@@ -9,14 +9,17 @@
   
   <style>
     :root {
-      --navy-dark: #090d16;
-      --navy-card: #111827;
-      --navy-border: #1e293b;
-      --medical-blue: #0ea5e9;
-      --gold-accent: #d97706;
-      --gold-light: #fef3c7;
-      --white: #ffffff;
-      --text-muted: #94a3b8;
+      --navy-dark: #070c14;
+      --navy-deep: #0b1320;
+      --navy-card: #111a2e;
+      --navy-border: #1e2d4a;
+      
+      --white-pure: #ffffff;
+      --white-soft: #f8fafc;
+      --white-muted: #94a3b8;
+      
+      --medical-blue: #38bdf8;
+      --sky-glow: rgba(56, 189, 248, 0.22);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -25,12 +28,13 @@
       margin: 0; padding: 0;
       font-family: 'Tajawal', sans-serif;
       background-color: var(--navy-dark);
-      color: var(--white);
+      color: var(--white-pure);
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.1) 0%, transparent 60%),
+        linear-gradient(180deg, var(--navy-dark) 0%, var(--navy-deep) 100%);
       background-attachment: fixed;
     }
 
@@ -40,93 +44,118 @@
     }
 
     .profile-card {
-      background: rgba(17, 24, 39, 0.92);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(17, 26, 46, 0.95) 20%), var(--navy-card);
       border: 1.5px solid var(--navy-border);
       border-radius: 24px;
-      padding: 30px 20px;
+      padding: 32px 22px 26px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.15);
+      backdrop-filter: blur(16px);
       position: relative;
     }
 
     .doctor-avatar-container {
-      position: relative; width: 140px; height: 140px; margin: 0 auto 16px;
+      position: relative; width: 140px; height: 140px; margin: 0 auto 20px;
     }
 
     .doctor-avatar {
       width: 100%; height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--medical-blue);
-      box-shadow: 0 0 25px rgba(14, 165, 233, 0.35);
+      border: 3px solid var(--white-pure);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2), 0 0 15px var(--sky-glow);
     }
 
     .doctor-title-ar {
-      font-size: 23px; font-weight: 900;
-      color: #fff; margin: 0 0 2px;
-      background: linear-gradient(180deg, #fff 40%, #e2e8f0 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-size: 25px; font-weight: 900;
+      margin: 0 0 6px;
+      color: #ffffff;
+      letter-spacing: -0.3px;
     }
 
     .doctor-title-en {
-      font-size: 14px; font-weight: 700;
-      color: var(--medical-blue); margin-0 0 16px;
-      letter-spacing: 0.5px; direction: ltr; display: inline-block;
+      font-size: 15px; font-weight: 700;
+      color: var(--medical-blue); 
+      margin: 0 0 18px;
+      letter-spacing: 0.8px; direction: ltr; display: block;
     }
 
     .badge-label {
-      background: rgba(14, 165, 233, 0.12);
-      color: var(--medical-blue);
-      border: 1px solid rgba(14, 165, 233, 0.3);
-      padding: 4px 14px; border-radius: 20px;
-      font-size: 12px; font-weight: 800;
-      display: inline-block; margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white-pure);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 18px; border-radius: 20px;
+      font-size: 13px; font-weight: 800;
+      display: inline-block; margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    .bio-box {
-      background: rgba(255, 255, 255, 0.03);
+    /* تنسيق الفئات والتخصصات */
+    .specialties-container {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--navy-border);
       border-right: 3px solid var(--medical-blue);
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 16px 18px;
       text-align: right;
-      font-size: 13.5px;
-      line-height: 1.8;
-      color: #cbd5e1;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+    }
+
+    .specialties-title {
+      font-size: 12.5px; font-weight: 800; color: var(--medical-blue);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    }
+
+    .specialties-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+
+    .specialties-list li {
+      font-size: 13.5px; color: #e2e8f0; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+      line-height: 1.5;
+    }
+
+    .specialties-list li i {
+      color: var(--medical-blue); font-size: 11px; flex-shrink: 0;
     }
 
     .btn-action {
-      width: 100%; padding: 13px;
+      width: 100%; padding: 13.5px;
       border-radius: 12px; border: none;
       font-weight: 800; font-size: 14.5px;
       cursor: pointer; font-family: inherit;
       display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: 0.3s; margin-bottom: 12px;
+      transition: all 0.3s ease; margin-bottom: 12px;
     }
 
     .btn-social {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1.5px solid var(--navy-border);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: var(--white-pure);
     }
     .btn-social:hover {
-      background: rgba(14, 165, 233, 0.15);
-      border-color: var(--medical-blue);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--white-pure);
     }
 
     .btn-booking {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      color: var(--navy-dark);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
+      font-weight: 900;
     }
-    .btn-booking:hover { transform: translateY(-1px); }
+    .btn-booking:hover {
+      transform: translateY(-1px);
+      background: #ffffff;
+    }
 
-    /* Modal - نافذة وسائل التواصل */
+    /* Modal - نافذة التواصل */
     .modal-overlay {
       position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
+      background: rgba(4, 8, 15, 0.85);
+      backdrop-filter: blur(10px);
       z-index: 100;
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: 0.3s;
@@ -135,51 +164,53 @@
 
     .modal-content {
       background: var(--navy-card);
-      border: 1.5px solid var(--navy-border);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       width: 90%; max-width: 380px;
-      padding: 22px 18px;
+      padding: 24px 20px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
     }
 
     .social-link-item {
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--navy-border);
-      padding: 12px 16px; border-radius: 12px;
-      margin-bottom: 10px; color: #fff; text-decoration: none;
+      padding: 13px 16px; border-radius: 12px;
+      margin-bottom: 12px; color: var(--white-pure); text-decoration: none;
       font-weight: 700; transition: 0.25s;
     }
     .social-link-item:hover {
-      background: rgba(14, 165, 233, 0.15);
-      border-color: var(--medical-blue);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--white-pure);
     }
 
     /* قسم نموذج الحجز */
     .form-group {
-      text-align: right; margin-bottom: 12px;
+      text-align: right; margin-bottom: 13px;
     }
     .form-group label {
       display: block; font-size: 12px; font-weight: 700;
-      color: var(--text-muted); margin-bottom: 4px;
+      color: var(--white-muted); margin-bottom: 5px;
     }
     .form-group input, .form-group textarea {
-      width: 100%; padding: 11px 12px;
+      width: 100%; padding: 11px 13px;
       border-radius: 10px; border: 1.5px solid var(--navy-border);
-      background: rgba(9, 13, 22, 0.9); color: #fff;
+      background: rgba(7, 12, 20, 0.85); color: #fff;
       font-size: 14px; font-family: inherit; outline: none;
+      transition: 0.25s;
     }
     .form-group input:focus, .form-group textarea:focus {
-      border-color: var(--medical-blue);
+      border-color: var(--white-pure);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
     }
 
     .form-status {
-      font-size: 12px; text-align: center; margin-top: 8px; min-height: 18px;
+      font-size: 12.5px; text-align: center; margin-top: 8px; min-height: 18px; font-weight: 700;
     }
 
     .footer {
-      text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 18px;
+      text-align: center; font-size: 11px; color: var(--white-muted); margin-top: 20px; opacity: 0.7;
     }
   </style>
 </head>
@@ -198,9 +229,18 @@
       <div class="doctor-title-en">Dr. Abdullah Alawad</div>
       <div><span class="badge-label">🩺 إستشاري القسطرة العصبية</span></div>
 
-      <!-- السيرة والتعريف الطبي -->
-      <div class="bio-box">
-        متخصص في علاج السكتات الدماغية، نزيف الدماغ، تشوهات الأوعية الدموية، طنين الأذن، وغيرها من الحالات المعقدة عن طريق القسطرة العصبية المتقدمة.
+      <!-- التخصصات والتعريف الطبي المنظم -->
+      <div class="specialties-container">
+        <div class="specialties-title">
+          <i class="fa-solid fa-microscope"></i> التخصصات والدواعي العلاجية بالقسطرة:
+        </div>
+        <ul class="specialties-list">
+          <li><i class="fa-solid fa-shield-halved"></i> علاج وتدخلات السكتات الدماغية</li>
+          <li><i class="fa-solid fa-shield-halved"></i> علاج نزيف الدماغ والأوعية الدموية</li>
+          <li><i class="fa-solid fa-shield-halved"></i> علاج تشوهات الأوعية الدموية (AVM)</li>
+          <li><i class="fa-solid fa-shield-halved"></i> علاج حالات طنين الأذن الوعائي</li>
+          <li><i class="fa-solid fa-shield-halved"></i> الحالات المعقدة بالقسطرة العصبية المتقدمة</li>
+        </ul>
       </div>
 
       <!-- زر وسائل التواصل الاجتماعي -->
@@ -211,8 +251,8 @@
       <div style="height: 10px;"></div>
 
       <!-- نموذج الحجز الطبي -->
-      <div style="border-top: 1px dashed var(--navy-border); padding-top: 16px; margin-top: 10px;">
-        <h3 style="font-size: 16px; font-weight: 800; margin: 0 0 12px; color: var(--medical-blue);">
+      <div style="border-top: 1px dashed rgba(255, 255, 255, 0.15); padding-top: 18px; margin-top: 10px;">
+        <h3 style="font-size: 16px; font-weight: 800; margin: 0 0 14px; color: var(--white-pure);">
           📅 حجز موعد استشارة
         </h3>
 
@@ -249,7 +289,7 @@
   <div class="modal-overlay" id="socialModal">
     <div class="modal-content">
       <h3 style="margin-top: 0; font-size: 17px; font-weight: 800; color: #fff;">حسابات التواصل الاجتماعي</h3>
-      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">للتواصل والمتابعة الطبية المباشرة عبر المنصات التالية:</p>
+      <p style="font-size: 12px; color: var(--white-muted); margin-bottom: 18px;">للتواصل والمتابعة الطبية المباشرة عبر المنصات التالية:</p>
 
       <a href="https://x.com/aalboridy?s=11" target="_blank" class="social-link-item">
         <span><i class="fa-brands fa-x-twitter" style="font-size: 18px; margin-left: 8px;"></i> منصة X (تويتر سابقاً)</span>
@@ -257,19 +297,18 @@
       </a>
 
       <a href="https://www.linkedin.com/in/dr-abdullah-alawad-alboridy-345b8726/" target="_blank" class="social-link-item">
-        <span><i class="fa-brands fa-linkedin" style="font-size: 18px; color: #0a66c2; margin-left: 8px;"></i> شبكة LinkedIn</span>
+        <span><i class="fa-brands fa-linkedin" style="font-size: 18px; color: #38bdf8; margin-left: 8px;"></i> شبكة LinkedIn</span>
         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px;"></i>
       </a>
 
-      <button class="btn-action btn-social" style="margin-top: 14px; margin-bottom:0;" onclick="closeSocialModal()">
+      <button class="btn-action btn-social" style="margin-top: 16px; margin-bottom:0;" onclick="closeSocialModal()">
         إغلاق
       </button>
     </div>
   </div>
 
   <script>
-    // وضعي رابط الـ Exec الممنوح لك من Apps Script هنا
-    const SCRIPT_URL = "ضعِي_رابط_السكربت_الجديد_هنا";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPN2xfLnIRybX7aa8qZLfMw0CS6l72riPOrtLRc_bTzUNhdRe3bVgPwxUS-boH56Cb/exec";
 
     function openSocialModal() {
       document.getElementById('socialModal').classList.add('active');
@@ -312,7 +351,7 @@
         body: JSON.stringify({
           name: name,
           phone: phone,
-          notes: notes || "حجز جديد"
+          notes: notes || "حجز جديد عبر الموقع التعريفي"
         })
       }).then(() => {
         statusEl.style.color = "#4ade80";
